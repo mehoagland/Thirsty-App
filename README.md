@@ -1,6 +1,6 @@
 # Thirsty-App
 
-A React on Rails App to help you figure out what to drink!
+Thirsty ? App: A React on Rails App to help you figure out what to drink!
 
 API
 
@@ -9,6 +9,10 @@ https://www.thecocktaildb.com/api.php
 Project Proposal
 
 https://docs.google.com/document/d/1Ik6gMLkZ9guG7ziwMksCLHnIttGIyhfOFXlJdT6hDWE/edit
+
+Wireframes
+
+https://github.com/mehoagland/Thirsty-App/blob/master/Wireframes/thirsty%3F-wireframes-01.jpg
 
 User Stories
 
