@@ -26,20 +26,24 @@ class DrinkList extends Component {
 
   renderDrinks() {
     return this.state.drinkData.map( drink =>
-        <div>
-          <h1>{drink.strDrink}</h1> <img src={drink.strDrinkThumb}/>
+
+        <div className="all-drinks">
+          <div className='image'><img src={drink.strDrinkThumb} className='main-drinks'/></div> <div className='drink-name'>{drink.strDrink}</div>
         </div>
+
 
   )}
 
 
   render() {
     return (
-      <div>
+      <div className="wrapper">
+      <div className = 'container'>
       {this.state.apiDataLoaded ? ( this.renderDrinks()
     ) : (
       <div>Loading</div>
     )}
+    </div>
     </div>
   )}
 }
