@@ -1,14 +1,20 @@
 .wrapper{
-  /* height: 736px; */
+  height: 736px;
   width: 414px;
   margin: 0 auto;
+  /* border: 3px solid green; */
 
 }
 
 .container{
-  border: 3px solid blue;
+  /* border: 3px solid blue; */
   display: flex;
   flex-wrap: wrap;
+  height: 736px;
+  width: 414px;
+  overflow: scroll;
+  border: 3px solid blue;
+
 
 }
 
@@ -40,4 +46,6 @@ width: 120px;
 
 .NavBar{
   border: 3px solid purple;
+  height:60px;
+  width: 414px;
 }
