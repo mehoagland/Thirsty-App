@@ -1,12 +1,11 @@
-.wrapper{
+.wrapper {
   height: 736px;
   width: 414px;
   margin: 0 auto;
   /* border: 3px solid green; */
-
 }
 
-.container{
+.container {
   /* border: 3px solid blue; */
   display: flex;
   flex-wrap: wrap;
@@ -14,14 +13,11 @@
   width: 414px;
   overflow: scroll;
   border: 3px solid blue;
-
-
 }
 
-
-.all-drinks{
+.all-drinks {
   height: 10px;
-  border:black solid 1px;
+  border: black solid 1px;
   display: table;
   width: 100px;
   height: 100px;
@@ -31,21 +27,20 @@
 }
 
 /* images for DrinkList */
-.main-drinks{
-display:table-row;
-width: 120px;
+.main-drinks {
+  display: table-row;
+  width: 120px;
 }
 
-
-.drink-name{
-  background-color:white;
-  display:table-row;
-  width:100px;
-  height:30px;
+.drink-name {
+  background-color: white;
+  display: table-row;
+  width: 100px;
+  height: 30px;
 }
 
-.NavBar{
+.NavBar {
   border: 3px solid purple;
-  height:60px;
+  height: 60px;
   width: 414px;
 }
