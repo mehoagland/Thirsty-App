@@ -9,7 +9,7 @@
 }
 
 .container {
-  /* border: 3px solid blue; */
+  border: 3px solid blue;
   display: flex;
   flex-wrap: wrap;
   height: 736px;
@@ -54,34 +54,21 @@
   width: 400px;
 }
 
-.instructions {
-  /* border: 3px solid purple; */
-  width: 400px;
-}
-
 .ingredients {
-  display: inline-block;
+  /* border: 3px solid orange; */
+  width: 400px;
+  display: block;
   margin-left: 10px;
-  border: 3px solid purple;
-  width: 180px;
-}
-
-.measure {
-  display: inline-block;
-  margin-left: 30px;
-  border: 3px solid purple;
-  width: 180px;
 }
 
 .directions {
   width: 400px;
   margin-left: 10px;
-  /* border: 3px solid purple; */
+  /* border: 3px solid red; */
 }
 
 .nav-img {
   width: 35px;
-
   display: inline-block;
   margin-left: 15px;
   margin-top: 5px;
@@ -95,10 +82,4 @@
   border: 1px solid black;
   width: 65px;
   display: inline-block;
-}
-
-table,
-th,
-td {
-  border: 1px solid black;
 }

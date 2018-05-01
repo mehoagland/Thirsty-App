@@ -63,6 +63,27 @@ class DrinkSingle extends Component {
     if (!this.state.singleDrinkDataLoaded) {
       return <div classeName="container">Loading</div>;
     }
+    // ["Dark rum", "light rum"]
+    let ingredients = this.specificKeyFilter(
+      this.state.singleDrinkData,
+      "strIngredient"
+    );
+    // ["1oz", "2oz"]
+    let measures = this.specificKeyFilter(
+      this.state.singleDrinkData,
+      "strMeasure"
+    );
+    let ingredientsMatch = [];
+    for (let i = 0; i < ingredients.length; i++) {
+      ingredientsMatch.push(
+        <li> {measures[i] + " " + ingredients[i] + "\r"} </li>
+      );
+    }
+    console.log(ingredientsMatch);
+
+    // `1oz Dark Rum
+    // 2oz Light rum`
+
     return (
       <div className="container">
         <h1>{this.state.singleDrinkData.strDrink}</h1>
@@ -71,40 +92,14 @@ class DrinkSingle extends Component {
           className="singleDataImg"
         />
 
-        <div className="instructions">
-          <div className="ingredients">
-            <h2>Ingredients:</h2>
+        <div className="ingredients">
+          <h2> Ingredients: </h2>
+          <p>{ingredientsMatch} </p>
+        </div>
 
-            {this.specificKeyFilter(
-              this.state.singleDrinkData,
-              "strIngredient"
-            ).map(item => {
-              return (
-                <div>
-                  <li>{item}</li>
-                </div>
-              );
-            })}
-          </div>
-          <div className="measure">
-            <h2>Measure:</h2>
-
-            {this.specificKeyFilter(
-              this.state.singleDrinkData,
-              "strMeasure"
-            ).map(item => {
-              return (
-                <div>
-                  <li>{item}</li>
-                </div>
-              );
-            })}
-          </div>
-
-          <div className="directions">
-            <h2>Directions:</h2>
-            <p>{this.state.singleDrinkData.strInstructions}</p>
-          </div>
+        <div className="directions">
+          <h2>Directions:</h2>
+          <p>{this.state.singleDrinkData.strInstructions}</p>
         </div>
       </div>
     );
