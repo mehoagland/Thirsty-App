@@ -49,3 +49,17 @@
   height: 400px;
   width: 400px;
 }
+
+.instructions {
+  border: 3px solid purple;
+}
+
+.ingredients {
+  border: 3px solid purple;
+  width: 414px;
+}
+
+.measure {
+  align-self: baseline;
+  border: 3px solid purple;
+}

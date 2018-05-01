@@ -21,9 +21,16 @@ class DrinkSingle extends Component {
     // Filter down the keys list to the keys that we care about.
     const keysWeWant = objectKeys.filter(key => {
       if (key.indexOf(partial) === 0) {
-        if (someObject[key] === "") {
+        if (
+          someObject[key] === "" ||
+          someObject[key] === " " ||
+          someObject[key] === null ||
+          someObject[key] === "\r\n" ||
+          someObject[key] === "\n"
+        ) {
           return false;
         }
+
         return true;
       }
 
@@ -63,8 +70,34 @@ class DrinkSingle extends Component {
           src={this.state.singleDrinkData.strDrinkThumb}
           className="singleDataImg"
         />
-        Ingredients:<br />
-        {this.specificKeyFilter(this.state.singleDrinkData, "strIngredient")}
+        <div className="instructions">
+          <div className="ingredients">
+            Ingredients:
+            {this.specificKeyFilter(
+              this.state.singleDrinkData,
+              "strIngredient"
+            ).map(item => {
+              return (
+                <div>
+                  <li>{item}</li>
+                </div>
+              );
+            })}
+          </div>
+          <div className="measure">
+            Measure:
+            {this.specificKeyFilter(
+              this.state.singleDrinkData,
+              "strMeasure"
+            ).map(item => {
+              return (
+                <div>
+                  <li>{item}</li>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
     );
   }
