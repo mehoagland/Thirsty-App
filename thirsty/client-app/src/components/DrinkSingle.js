@@ -65,14 +65,14 @@ class DrinkSingle extends Component {
     }
     return (
       <div className="container">
-        <p>{this.state.singleDrinkData.strDrink}</p>
+        <h2>{this.state.singleDrinkData.strDrink}</h2>
         <img
           src={this.state.singleDrinkData.strDrinkThumb}
           className="singleDataImg"
         />
         <div className="instructions">
           <div className="ingredients">
-            Ingredients:
+            <h3>Ingredients:</h3>
             {this.specificKeyFilter(
               this.state.singleDrinkData,
               "strIngredient"
@@ -85,7 +85,7 @@ class DrinkSingle extends Component {
             })}
           </div>
           <div className="measure">
-            Measure:
+            <h3>Measure:</h3>
             {this.specificKeyFilter(
               this.state.singleDrinkData,
               "strMeasure"
@@ -96,6 +96,10 @@ class DrinkSingle extends Component {
                 </div>
               );
             })}
+          </div>
+          <div className="directions">
+            <h3>Directions:</h3>
+            <p>{this.state.singleDrinkData.strInstructions}</p>
           </div>
         </div>
       </div>

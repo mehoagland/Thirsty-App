@@ -51,15 +51,26 @@
 }
 
 .instructions {
-  border: 3px solid purple;
+  /* border: 3px solid purple; */
+  width: 400px;
 }
 
 .ingredients {
-  border: 3px solid purple;
-  width: 414px;
+  display: inline-block;
+  margin-left: 10px;
+  /* border: 3px solid purple; */
+  width: 120px;
 }
 
 .measure {
-  align-self: baseline;
-  border: 3px solid purple;
+  display: inline-block;
+  margin-left: 30px;
+  /* border: 3px solid purple; */
+  width: 120px;
+}
+
+.directions {
+  width: 400px;
+  margin-left: 10px;
+  /* border: 3px solid purple; */
 }
