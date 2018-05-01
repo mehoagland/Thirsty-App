@@ -1,7 +1,10 @@
+@import url("https://fonts.googleapis.com/css?family=Quicksand");
+
 .wrapper {
   height: 736px;
   width: 414px;
   margin: 0 auto;
+  font-family: "Quicksand", sans-serif;
   /* border: 3px solid green; */
 }
 
@@ -12,7 +15,7 @@
   height: 736px;
   width: 414px;
   overflow: scroll;
-  border: 3px solid blue;
+  border: 1px solid black;
 }
 
 .all-drinks {
@@ -40,9 +43,10 @@
 }
 
 .NavBar {
-  border: 3px solid purple;
+  border: 1px solid black;
   height: 60px;
   width: 414px;
+  background-color: #e5e347;
 }
 
 .singleDataImg {
@@ -58,19 +62,43 @@
 .ingredients {
   display: inline-block;
   margin-left: 10px;
-  /* border: 3px solid purple; */
-  width: 120px;
+  border: 3px solid purple;
+  width: 180px;
 }
 
 .measure {
   display: inline-block;
   margin-left: 30px;
-  /* border: 3px solid purple; */
-  width: 120px;
+  border: 3px solid purple;
+  width: 180px;
 }
 
 .directions {
   width: 400px;
   margin-left: 10px;
   /* border: 3px solid purple; */
+}
+
+.nav-img {
+  width: 35px;
+
+  display: inline-block;
+  margin-left: 15px;
+  margin-top: 5px;
+}
+
+.nav-images {
+  border: 1px solid black;
+}
+
+.spacer {
+  border: 1px solid black;
+  width: 65px;
+  display: inline-block;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
 }
