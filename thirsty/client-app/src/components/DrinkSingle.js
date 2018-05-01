@@ -86,7 +86,9 @@ class DrinkSingle extends Component {
 
     return (
       <div className="container">
-        <h1>{this.state.singleDrinkData.strDrink}</h1>
+        <div className="name">
+          <h1>{this.state.singleDrinkData.strDrink}</h1>
+        </div>
         <img
           src={this.state.singleDrinkData.strDrinkThumb}
           className="singleDataImg"
@@ -100,6 +102,17 @@ class DrinkSingle extends Component {
         <div className="directions">
           <h2>Directions:</h2>
           <p>{this.state.singleDrinkData.strInstructions}</p>
+
+          <div className="whatDidYouThink">
+            <b>What did you think?</b>
+            <br />
+            <input
+              class="think"
+              type="text"
+              name="comment"
+              placeholder="What did you do differently?"
+            />
+          </div>
         </div>
       </div>
     );

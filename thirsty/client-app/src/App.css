@@ -8,14 +8,27 @@
   /* border: 3px solid green; */
 }
 
+.think {
+  border: 1px solid black;
+  width: 300px;
+  height: 25px;
+  font-size: 13px;
+  padding-left: 5px;
+  margin-bottom: 30px;
+  margin-top: 10px;
+}
+
+.whatDidYouThink {
+  font-size: 20px;
+}
+
 .container {
-  border: 3px solid blue;
+  border: 1px solid black;
   display: flex;
   flex-wrap: wrap;
   height: 736px;
   width: 414px;
   overflow: scroll;
-  border: 1px solid black;
 }
 
 .all-drinks {
@@ -42,6 +55,10 @@
   height: 30px;
 }
 
+.name {
+  margin-left: 10px;
+}
+
 .NavBar {
   border: 1px solid black;
   height: 60px;
@@ -50,8 +67,9 @@
 }
 
 .singleDataImg {
-  height: 400px;
-  width: 400px;
+  height: 300px;
+  width: 300px;
+  margin-left: 10px;
 }
 
 .ingredients {
@@ -75,7 +93,7 @@
 }
 
 .nav-images {
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 .spacer {
