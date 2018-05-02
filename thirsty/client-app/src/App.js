@@ -3,7 +3,8 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect
+  Redirect,
+  Link
 } from "react-router-dom";
 import Nav from "./components/Nav";
 import Main from "./components/Main";
@@ -76,10 +77,11 @@ class App extends Component {
       <Router>
         <div className="wrapper">
           <Nav className="NavBar" component={Nav} />
-          <Route path="/drinks" exact component={DrinkList} />
+          <Route exact path="/drinks" exact component={DrinkList} />
 
           <Route path="/drinks/single/:id" exact component={DrinkSingle} />
           <Route
+            exact
             path="/register"
             render={() => (
               <RegisterForm handleRegisterSubmit={this.handleRegisterSubmit} />
@@ -89,9 +91,9 @@ class App extends Component {
           <Route
             exact
             path="/login"
-            render={() => (
-              <LoginForm handleLoginSubmit={this.handleLoginSubmit} />
-            )}
+            render={() => !this.state.auth ? (<Redirect to="/dash"/>) :
+            (<LoginForm handleLoginSubmit={this.handleLoginSubmit} />)
+            }
           />
 
           {this.state.shouldGoToDash ? <Redirect to="/dash" /> : ""}

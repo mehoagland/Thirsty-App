@@ -11,14 +11,16 @@ class Nav extends Component {
 
   render() {
     return (
-      <Router>
+
         <div className="NavBar">
-          <Link to="/login">Login</Link>
+        <div>
+        <Link to="/login">Login</Link>
+        </div>
           <Link to="/register">Register</Link>
           <Link to="/dash">Profile</Link>
           <div className="nav-images">
             <div className="spacer">
-              <a href="http://localhost:3000">
+              <a href="http://localhost:3000/drinks">
                 <img
                   src={require("../svg/search-01.svg")}
                   className="nav-img"
@@ -48,7 +50,7 @@ class Nav extends Component {
             </div>
           </div>
         </div>
-      </Router>
+
     );
   }
 }
