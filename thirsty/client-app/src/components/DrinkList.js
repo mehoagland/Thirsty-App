@@ -41,7 +41,7 @@ class DrinkList extends Component {
         <div className="image">
           <img src={drink.strDrinkThumb} className="main-drinks" />
         </div>
-        <Link to={`/single/${drink.idDrink}`} className="drink-name">
+        <Link to={`/drinks/single/${drink.idDrink}`} className="drink-name">
           {drink.strDrink}
         </Link>
       </div>

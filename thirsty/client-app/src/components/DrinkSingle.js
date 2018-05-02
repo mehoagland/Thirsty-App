@@ -75,9 +75,13 @@ class DrinkSingle extends Component {
     );
     let ingredientsMatch = [];
     for (let i = 0; i < ingredients.length; i++) {
-      ingredientsMatch.push(
-        <li> {measures[i] + " " + ingredients[i] + "\r"} </li>
-      );
+      if (measures[i] === undefined) {
+        ingredientsMatch.push(<li>{ingredients[i]}</li>);
+      } else {
+        ingredientsMatch.push(
+          <li> {measures[i] + " " + ingredients[i] + "\r"} </li>
+        );
+      }
     }
     console.log(ingredientsMatch);
 

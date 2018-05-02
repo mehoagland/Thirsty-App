@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import LoginForm from "./LoginForm";
 
 class Nav extends Component {
   constructor(props) {
@@ -12,6 +13,9 @@ class Nav extends Component {
     return (
       <Router>
         <div className="NavBar">
+          <Link to="/login">Login</Link>
+          <Link to="/register">Register</Link>
+          <Link to="/dash">Profile</Link>
           <div className="nav-images">
             <div className="spacer">
               <a href="http://localhost:3000">
