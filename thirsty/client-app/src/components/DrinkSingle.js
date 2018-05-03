@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Auth from "../modules/Auth";
+import Favorite from "./Favorite";
 
 class DrinkSingle extends Component {
   constructor(props) {

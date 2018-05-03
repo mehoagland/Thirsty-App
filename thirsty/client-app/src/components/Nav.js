@@ -1,56 +1,44 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import LoginForm from "./LoginForm";
+import Auth from "../modules/Auth";
 
 class Nav extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {};
   }
 
   render() {
     return (
-
-        <div className="NavBar">
-        <div>
-        <Link to="/login">Login</Link>
+      <div className="NavBar">
+        <div className="Links">
+          <Link to="/register">Register</Link> <Link to="/login">Login</Link>{" "}
+          <button onClick={this.props.handleLogout}>Logout</button>
         </div>
-          <Link to="/register">Register</Link>
-          <Link to="/dash">Profile</Link>
-          <div className="nav-images">
-            <div className="spacer">
-              <a href="http://localhost:3000/drinks">
-                <img
-                  src={require("../svg/search-01.svg")}
-                  className="nav-img"
-                />
-              </a>
-            </div>
-            <div className="spacer">
-              {" "}
-              <img
-                src={require("../svg/heart-01.svg")}
-                className="nav-img"
-              />{" "}
-            </div>
-            <div className="spacer">
-              {" "}
-              <img
-                src={require("../svg/add-01.svg")}
-                className="nav-img"
-              />{" "}
-            </div>
-            <div className="spacer">
-              {" "}
-              <img
-                src={require("../svg/profile-01.svg")}
-                className="nav-img"
-              />{" "}
-            </div>
+        <div className="nav-images">
+          <div className="spacer">
+            <Link to={"/drinks/"}>
+              <img src={require("../svg/search-01.svg")} className="nav-img" />
+            </Link>
+          </div>
+          <div className="spacer">
+            {" "}
+            <Link to={"/drinks/favorites"}>
+              <img src={require("../svg/heart-01.svg")} className="nav-img" />{" "}
+            </Link>
+          </div>
+          <div className="spacer">
+            {" "}
+            <img src={require("../svg/add-01.svg")} className="nav-img" />{" "}
+          </div>
+          <div className="spacer">
+            {" "}
+            <Link to={"/drinks/dash"}>
+              <img src={require("../svg/profile-01.svg")} className="nav-img" />{" "}
+            </Link>
           </div>
         </div>
-
+      </div>
     );
   }
 }

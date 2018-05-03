@@ -61,7 +61,7 @@
 
 .NavBar {
   border: 1px solid black;
-  height: 60px;
+  height: 70px;
   width: 414px;
   background-color: #e5e347;
 }
@@ -100,4 +100,32 @@
   border: 1px solid black;
   width: 65px;
   display: inline-block;
+}
+
+.links {
+  display: inline-block;
+}
+
+.favListImg {
+  display: table-row;
+  width: 120px;
+}
+
+.search {
+  margin: 0 auto;
+  /* border: 1px solid black; */
+  margin-bottom: 40px;
+  margin-top: 20px;
+  display: flex;
+}
+.searchBar {
+  width: 50vw;
+  order: 2;
+}
+
+.search-img {
+  padding: 2px;
+  order: -1;
+  width: 20px;
+  height: 20px;
 }

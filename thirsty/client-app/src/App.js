@@ -13,6 +13,7 @@ import DrinkSingle from "./components/DrinkSingle";
 import Auth from "./modules/Auth";
 import RegisterForm from "./components/RegisterForm";
 import LoginForm from "./components/LoginForm";
+import Favorite from "./components/Favorite";
 
 import "./App.css";
 
@@ -26,7 +27,26 @@ class App extends Component {
 
     this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this);
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
+
+  handleLogout() {
+    fetch("/logout", {
+      method: "DELETE",
+      headers: {
+        token: Auth.getToken(),
+        Authorization: `Token ${Auth.getToken()}`
+      }
+    })
+      .then(res => {
+        Auth.deauthenticateUser();
+        this.setState({
+          auth: Auth.isUserAuthenticated()
+        });
+      })
+      .catch(err => console.log(err));
+  }
+
   handleRegisterSubmit(e, data) {
     e.preventDefault();
     fetch("/users", {
@@ -42,6 +62,7 @@ class App extends Component {
       .then(res => {
         console.log(res);
         Auth.authenticateToken(res.token);
+        console.log(Auth.authenticateToken(res.token));
         this.setState({
           auth: Auth.isUserAuthenticated(),
           shouldGoToDash: true
@@ -76,7 +97,12 @@ class App extends Component {
     return (
       <Router>
         <div className="wrapper">
-          <Nav className="NavBar" component={Nav} />
+          <Nav
+            className="NavBar"
+            component={Nav}
+            handleLogout={this.handleLogout}
+          />
+
           <Route exact path="/drinks" exact component={DrinkList} />
 
           <Route path="/drinks/single/:id" exact component={DrinkSingle} />
@@ -91,12 +117,18 @@ class App extends Component {
           <Route
             exact
             path="/login"
-            render={() => !this.state.auth ? (<Redirect to="/dash"/>) :
-            (<LoginForm handleLoginSubmit={this.handleLoginSubmit} />)
+            render={() =>
+              this.state.auth ? (
+                <Redirect to="/dash" />
+              ) : (
+                <LoginForm handleLoginSubmit={this.handleLoginSubmit} />
+              )
             }
           />
 
           {this.state.shouldGoToDash ? <Redirect to="/dash" /> : ""}
+
+          <Route exact path="/drinks/favorites" exact component={Favorite} />
         </div>
       </Router>
     );

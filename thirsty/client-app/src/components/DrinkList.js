@@ -52,6 +52,13 @@ class DrinkList extends Component {
     return (
       <div className="wrapper">
         <div className="container">
+          <div className="search">
+            <img src={require("../svg/search-01.svg")} className="search-img" />
+            <form>
+              <input className="searchBar" type="text" name="search" />
+              <input type="submit" value="Submit" />
+            </form>
+          </div>
           {this.state.apiDataLoaded ? this.renderDrinks() : <div>Loading</div>}
         </div>
       </div>
