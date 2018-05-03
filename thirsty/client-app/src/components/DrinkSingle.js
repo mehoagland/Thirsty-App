@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Auth from "../modules/Auth";
 
 class DrinkSingle extends Component {
   constructor(props) {
@@ -6,14 +7,47 @@ class DrinkSingle extends Component {
 
     this.state = {
       singleDrinkData: null,
-      singleDrinkDataLoaded: false
+      singleDrinkDataLoaded: false,
+      auth: Auth.isUserAuthenticated(),
     };
     this.specificKeyFilter = this.specificKeyFilter.bind(this);
+    this.addToFavorites = this.addToFavorites.bind(this);
   }
 
   componentDidMount() {
     this.displayInfo();
   }
+
+  addToFavorites(){
+      fetch("/favorites", {
+        method: "POST",
+        body: JSON.stringify({
+          favorite: {
+            drink_id: this.state.singleDrinkData.idDrink,
+            name: this.state.singleDrinkData.strDrink,
+            url: this.state.singleDrinkData.strDrinkThumb,
+          }
+        }),
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Token ${Auth.getToken()}`,
+          token: `${Auth.getToken()}`,
+        }
+      })
+        .then(res => res.json())
+        .then(res => {
+          console.log(res)
+          Auth.authenticateToken(res.token);
+          this.setState({
+            auth: Auth.isUserAuthenticated(),
+
+
+          });alert("added successfully")
+        })
+        .catch(err => console.log("FETCH ERROR: "+err));
+    }
+
+
 
   specificKeyFilter = (someObject, partial) => {
     const objectKeys = Object.keys(someObject);
@@ -106,7 +140,9 @@ class DrinkSingle extends Component {
         <div className="directions">
           <h2>Directions:</h2>
           <p>{this.state.singleDrinkData.strInstructions}</p>
-
+          <button onClick={()=> this.addToFavorites()}>
+            ++++
+          </button>
           <div className="whatDidYouThink">
             <b>What did you think?</b>
             <br />
