@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import api from "../api";
 import DrinkSingle from "./DrinkSingle";
 import { Router, Switch, Route, Link } from "react-router-dom";
+import Search from "./Search";
 
 class DrinkList extends Component {
   constructor(props) {
@@ -52,12 +53,8 @@ class DrinkList extends Component {
     return (
       <div className="wrapper">
         <div className="container">
-          <div className="search">
-            <img src={require("../svg/search-01.svg")} className="search-img" />
-            <form>
-              <input className="searchBar" type="text" name="search" />
-              <input type="submit" value="Submit" />
-            </form>
+          <div className="search-component">
+            <Search searchBar={Search} />
           </div>
           {this.state.apiDataLoaded ? this.renderDrinks() : <div>Loading</div>}
         </div>

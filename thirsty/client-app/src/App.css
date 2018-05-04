@@ -111,6 +111,13 @@
   width: 120px;
 }
 
+.search-component {
+  margin: 0 auto;
+  border: 1px solid black;
+  margin-bottom: 40px;
+  margin-top: 20px;
+  display: flex;
+}
 .search {
   margin: 0 auto;
   /* border: 1px solid black; */
@@ -119,8 +126,9 @@
   display: flex;
 }
 .searchBar {
-  width: 50vw;
+  width: 20vw;
   order: 2;
+  /* border: 1px solid black; */
 }
 
 .search-img {
