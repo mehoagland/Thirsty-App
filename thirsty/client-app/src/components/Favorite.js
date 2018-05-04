@@ -11,9 +11,15 @@ class Favorite extends Component {
     };
 
     this.renderFavorites = this.renderFavorites.bind(this);
+    this.deleteFavorite = this.deleteFavorite.bind(this);
+    this.getFetch = this.getFetch.bind(this);
   }
 
   componentDidMount() {
+    this.getFetch();
+  }
+
+  getFetch() {
     fetch("/favorites", {
       headers: {
         "Content-Type": "application/json",
@@ -32,13 +38,33 @@ class Favorite extends Component {
       .catch(err => console.log(err));
   }
 
+  deleteFavorite(favorites_id) {
+    console.log(favorites_id);
+    fetch(`/favorites/${favorites_id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token ${Auth.getToken()}`,
+        token: `${Auth.getToken()}`
+      }
+    }).then(res => this.getFetch());
+  }
+
   renderFavorites() {
     console.log(this.state.favoriteList);
     return this.state.favoriteList.map(favorite => {
       return (
         <div className="favs" key={favorite.id}>
           <img src={favorite.url} className="favListImg" />
-          {favorite.name}
+          <Link to={`/drinks/single/${favorite.id}`}>{favorite.name}</Link>
+          <button
+            onClick={e => {
+              this.deleteFavorite(favorite.id);
+              console.log(favorite.id);
+            }}
+          >
+            Delete
+          </button>
         </div>
       );
     });

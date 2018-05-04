@@ -1,6 +1,6 @@
 class FavoritesController < ApiController
     # GET /api/favorites
-    before_action :require_login, 
+    before_action :require_login
 
     def index
       favorites = Favorite.all
@@ -26,6 +26,12 @@ class FavoritesController < ApiController
         render json: {message: 'Could not create favorite'}
       end
     end
+
+    def destroy
+     favorite = Favorite.find(params[:id])
+     favorite.destroy
+     redirect_to favorite_path
+   end
 
     private
     def favorite_params

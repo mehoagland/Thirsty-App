@@ -12,6 +12,7 @@ class DrinkList extends Component {
       drinkData: null
     };
     this.renderDrinks = this.renderDrinks.bind(this);
+    this.getSearchResults = this.getSearchResults.bind(this);
   }
 
   //   render() {
@@ -36,6 +37,20 @@ class DrinkList extends Component {
       });
   }
 
+  getSearchResults(e, search) {
+    e.preventDefault();
+    fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${search}`)
+      .then(response => response.json())
+      .then(response => {
+        console.log("Line 25", response);
+        this.setState({
+          apiDataLoaded: true,
+          drinkData: response.drinks
+        });
+      })
+      .catch(err => console.log(err));
+  }
+
   renderDrinks() {
     return this.state.drinkData.map(drink => (
       <div className="all-drinks">
@@ -54,7 +69,7 @@ class DrinkList extends Component {
       <div className="wrapper">
         <div className="container">
           <div className="search-component">
-            <Search searchBar={Search} />
+            <Search searchBar={Search} onSearch={this.getSearchResults} />
           </div>
           {this.state.apiDataLoaded ? this.renderDrinks() : <div>Loading</div>}
         </div>
