@@ -9,7 +9,7 @@ class DrinkSingle extends Component {
     this.state = {
       singleDrinkData: null,
       singleDrinkDataLoaded: false,
-      auth: Auth.isUserAuthenticated(),
+      auth: Auth.isUserAuthenticated()
     };
     this.specificKeyFilter = this.specificKeyFilter.bind(this);
     this.addToFavorites = this.addToFavorites.bind(this);
@@ -19,36 +19,33 @@ class DrinkSingle extends Component {
     this.displayInfo();
   }
 
-  addToFavorites(){
-      fetch("/favorites", {
-        method: "POST",
-        body: JSON.stringify({
-          favorite: {
-            drink_id: this.state.singleDrinkData.idDrink,
-            name: this.state.singleDrinkData.strDrink,
-            url: this.state.singleDrinkData.strDrinkThumb,
-          }
-        }),
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Token ${Auth.getToken()}`,
-          token: `${Auth.getToken()}`,
+  addToFavorites() {
+    fetch("/favorites", {
+      method: "POST",
+      body: JSON.stringify({
+        favorites: {
+          drink_id: this.state.singleDrinkData.idDrink,
+          name: this.state.singleDrinkData.strDrink,
+          url: this.state.singleDrinkData.strDrinkThumb
         }
+      }),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token ${Auth.getToken()}`,
+        token: `${Auth.getToken()}`
+      }
+    })
+      .then(res => res.json())
+      .then(res => {
+        console.log(res);
+        Auth.authenticateToken(res.token);
+        this.setState({
+          auth: Auth.isUserAuthenticated()
+        });
+        alert("added successfully");
       })
-        .then(res => res.json())
-        .then(res => {
-          console.log(res)
-          Auth.authenticateToken(res.token);
-          this.setState({
-            auth: Auth.isUserAuthenticated(),
-
-
-          });alert("added successfully")
-        })
-        .catch(err => console.log("FETCH ERROR: "+err));
-    }
-
-
+      .catch(err => console.log("FETCH ERROR: " + err));
+  }
 
   specificKeyFilter = (someObject, partial) => {
     const objectKeys = Object.keys(someObject);
@@ -96,7 +93,7 @@ class DrinkSingle extends Component {
 
   render() {
     if (!this.state.singleDrinkDataLoaded) {
-      return <div classeName="container">Loading</div>;
+      return <div classeName="">Loading</div>;
     }
     // ["Dark rum", "light rum"]
     let ingredients = this.specificKeyFilter(
@@ -124,36 +121,27 @@ class DrinkSingle extends Component {
     // 2oz Light rum`
 
     return (
-      <div className="container">
-        <div className="name">
-          <h1>{this.state.singleDrinkData.strDrink}</h1>
-        </div>
-        <img
-          src={this.state.singleDrinkData.strDrinkThumb}
+      <div className="container2">
+        <div className="title">{this.state.singleDrinkData.strDrink}</div>
+
+        <div
+          style={{
+            backgroundImage:
+              "url(" + this.state.singleDrinkData.strDrinkThumb + ")"
+          }}
           className="singleDataImg"
         />
 
         <div className="ingredients">
           <h2> Ingredients: </h2>
           <p>{ingredientsMatch} </p>
-        </div>
-
-        <div className="directions">
-          <h2>Directions:</h2>
-          <p>{this.state.singleDrinkData.strInstructions}</p>
-          <button onClick={()=> this.addToFavorites()}>
-            ++++
-          </button>
-          <div className="whatDidYouThink">
-            <b>What did you think?</b>
-            <br />
-            <input
-              class="think"
-              type="text"
-              name="comment"
-              placeholder="What did you do differently?"
-            />
+          <div className="directions">
+            <h2>Directions:</h2>
+            <p>{this.state.singleDrinkData.strInstructions}</p>
           </div>
+          <button onClick={() => this.addToFavorites()}>
+            Add to Favorites
+          </button>
         </div>
       </div>
     );

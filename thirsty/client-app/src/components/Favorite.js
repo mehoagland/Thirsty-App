@@ -19,8 +19,15 @@ class Favorite extends Component {
     this.getFetch();
   }
 
+  componentWillUnmount() {
+    this.setState({
+      favoriteListLoaded: false
+    });
+  }
+
   getFetch() {
     fetch("/favorites", {
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Token ${Auth.getToken()}`,

@@ -96,7 +96,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="wrapper">
+        <div className="yes">
           <Nav
             className="NavBar"
             component={Nav}

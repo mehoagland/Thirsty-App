@@ -5504,3 +5504,1618 @@ Processing by FavoritesController#index as */*
 Completed 200 OK in 3ms (Views: 1.3ms | ActiveRecord: 0.5ms)
 
 
+Started DELETE "/logout" for 127.0.0.1 at 2018-05-04 16:38:52 -0400
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.0/lib/active_record/log_subscriber.rb:98
+Processing by SessionsController#destroy as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "jKCAQ2h9QPF94hTi8WzxCVjr"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mUser Update (1.6ms)[0m  [1m[33mUPDATE "users" SET "auth_token" = $1 WHERE "users"."id" = $2[0m  [["auth_token", nil], ["id", 1]]
+  ↳ app/models/user.rb:9
+Completed 200 OK in 29ms (ActiveRecord: 6.3ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2018-05-04 16:39:00 -0400
+Processing by SessionsController#create as */*
+  Parameters: {"username"=>"cat", "password"=>"[FILTERED]", "session"=>{"username"=>"cat", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "cat"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:13
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "cat"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[36mUser Update (0.5ms)[0m  [1m[33mUPDATE "users" SET "auth_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["auth_token", "eh6rZktNwv1YdribjBsH5bCN"], ["updated_at", "2018-05-04 20:39:00.877585"], ["id", 1]]
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/sessions_controller.rb:25
+Completed 200 OK in 84ms (Views: 0.3ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-04 16:39:02 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "eh6rZktNwv1YdribjBsH5bCN"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (0.4ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites"[0m
+  ↳ app/controllers/favorites_controller.rb:7
+Completed 200 OK in 13ms (Views: 9.1ms | ActiveRecord: 14.8ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-04 16:39:07 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "eh6rZktNwv1YdribjBsH5bCN"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (0.3ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites"[0m
+  ↳ app/controllers/favorites_controller.rb:7
+Completed 200 OK in 4ms (Views: 1.6ms | ActiveRecord: 0.6ms)
+
+
+Started DELETE "/favorites/3" for 127.0.0.1 at 2018-05-04 16:39:08 -0400
+Processing by FavoritesController#destroy as */*
+  Parameters: {"id"=>"3", "favorite"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "eh6rZktNwv1YdribjBsH5bCN"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (0.2ms)[0m  [1m[34mSELECT  "favorites".* FROM "favorites" WHERE "favorites"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:31
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/favorites_controller.rb:32
+  [1m[36mFavorite Destroy (0.3ms)[0m  [1m[31mDELETE FROM "favorites" WHERE "favorites"."id" = $1[0m  [["id", 3]]
+  ↳ app/controllers/favorites_controller.rb:32
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/favorites_controller.rb:32
+Redirected to http://localhost:3000/favorites/3
+Completed 302 Found in 7ms (ActiveRecord: 2.4ms)
+
+
+Started DELETE "/favorites/3" for 127.0.0.1 at 2018-05-04 16:39:08 -0400
+Processing by FavoritesController#destroy as */*
+  Parameters: {"id"=>"3", "favorite"=>{}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "eh6rZktNwv1YdribjBsH5bCN"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (0.4ms)[0m  [1m[34mSELECT  "favorites".* FROM "favorites" WHERE "favorites"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:31
+Completed 404 Not Found in 3ms (ActiveRecord: 0.8ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Favorite with 'id'=3):
+  
+app/controllers/favorites_controller.rb:31:in `destroy'
+Started GET "/favorites" for 127.0.0.1 at 2018-05-04 16:39:08 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "eh6rZktNwv1YdribjBsH5bCN"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (0.2ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites"[0m
+  ↳ app/controllers/favorites_controller.rb:7
+Completed 200 OK in 4ms (Views: 1.1ms | ActiveRecord: 1.3ms)
+
+
+Started DELETE "/favorites/4" for 127.0.0.1 at 2018-05-04 16:39:09 -0400
+Processing by FavoritesController#destroy as */*
+  Parameters: {"id"=>"4", "favorite"=>{}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "eh6rZktNwv1YdribjBsH5bCN"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (0.3ms)[0m  [1m[34mSELECT  "favorites".* FROM "favorites" WHERE "favorites"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:31
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/favorites_controller.rb:32
+  [1m[36mFavorite Destroy (0.7ms)[0m  [1m[31mDELETE FROM "favorites" WHERE "favorites"."id" = $1[0m  [["id", 4]]
+  ↳ app/controllers/favorites_controller.rb:32
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/favorites_controller.rb:32
+Redirected to http://localhost:3000/favorites/4
+Completed 302 Found in 7ms (ActiveRecord: 2.9ms)
+
+
+Started DELETE "/favorites/4" for 127.0.0.1 at 2018-05-04 16:39:09 -0400
+Processing by FavoritesController#destroy as */*
+  Parameters: {"id"=>"4", "favorite"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "eh6rZktNwv1YdribjBsH5bCN"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (0.2ms)[0m  [1m[34mSELECT  "favorites".* FROM "favorites" WHERE "favorites"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:31
+Completed 404 Not Found in 2ms (ActiveRecord: 0.5ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Favorite with 'id'=4):
+  
+app/controllers/favorites_controller.rb:31:in `destroy'
+Started GET "/favorites" for 127.0.0.1 at 2018-05-04 16:39:09 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "eh6rZktNwv1YdribjBsH5bCN"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (1.2ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites"[0m
+  ↳ app/controllers/favorites_controller.rb:7
+Completed 200 OK in 4ms (Views: 1.0ms | ActiveRecord: 1.6ms)
+
+
+Started POST "/favorites" for 127.0.0.1 at 2018-05-04 16:40:12 -0400
+Processing by FavoritesController#create as */*
+  Parameters: {"favorite"=>{"drink_id"=>"14167", "name"=>"Vodka Martini", "url"=>"https://www.thecocktaildb.com/images/media/drink/qyxrqw1439906528.jpg"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "eh6rZktNwv1YdribjBsH5bCN"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "eh6rZktNwv1YdribjBsH5bCN"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[36mFavorite Create (0.4ms)[0m  [1m[32mINSERT INTO "favorites" ("drink_id", "name", "url", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["drink_id", "14167"], ["name", "Vodka Martini"], ["url", "https://www.thecocktaildb.com/images/media/drink/qyxrqw1439906528.jpg"], ["user_id", 1], ["created_at", "2018-05-04 20:40:12.644758"], ["updated_at", "2018-05-04 20:40:12.644758"]]
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[35m (6.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/favorites_controller.rb:20
+Completed 200 OK in 27ms (Views: 0.5ms | ActiveRecord: 7.2ms)
+
+
+Started POST "/favorites" for 127.0.0.1 at 2018-05-04 16:40:18 -0400
+Processing by FavoritesController#create as */*
+  Parameters: {"favorite"=>{"drink_id"=>"14167", "name"=>"Vodka Martini", "url"=>"https://www.thecocktaildb.com/images/media/drink/qyxrqw1439906528.jpg"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-04 16:40:23 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (2.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 4ms (Views: 0.2ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-04 16:40:34 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (5.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 7ms (Views: 0.4ms | ActiveRecord: 5.1ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-04 16:40:47 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (4.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 6ms (Views: 0.2ms | ActiveRecord: 4.6ms)
+
+
+Started DELETE "/logout" for 127.0.0.1 at 2018-05-04 16:40:55 -0400
+Processing by SessionsController#destroy as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.2ms)
+
+
+  
+NoMethodError (undefined method `invalidate_token' for nil:NilClass):
+  
+app/controllers/sessions_controller.rb:29:in `logout'
+app/controllers/sessions_controller.rb:14:in `destroy'
+Started POST "/login" for 127.0.0.1 at 2018-05-04 16:41:00 -0400
+Processing by SessionsController#create as */*
+  Parameters: {"username"=>"cat", "password"=>"[FILTERED]", "session"=>{"username"=>"cat", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "cat"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:13
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "cat"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "auth_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["auth_token", "6VWh9drWwhEZ7qdFKX6tkC8p"], ["updated_at", "2018-05-04 20:41:00.646374"], ["id", 1]]
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/sessions_controller.rb:25
+Completed 200 OK in 79ms (Views: 0.2ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-04 16:41:02 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "6VWh9drWwhEZ7qdFKX6tkC8p"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (0.8ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites"[0m
+  ↳ app/controllers/favorites_controller.rb:7
+Completed 200 OK in 4ms (Views: 1.8ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-04 16:41:56 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "6VWh9drWwhEZ7qdFKX6tkC8p"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (4.3ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites"[0m
+  ↳ app/controllers/favorites_controller.rb:7
+Completed 200 OK in 8ms (Views: 1.6ms | ActiveRecord: 4.7ms)
+
+
+Started DELETE "/logout" for 127.0.0.1 at 2018-05-04 16:42:00 -0400
+Processing by SessionsController#destroy as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "6VWh9drWwhEZ7qdFKX6tkC8p"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mUser Update (1.3ms)[0m  [1m[33mUPDATE "users" SET "auth_token" = $1 WHERE "users"."id" = $2[0m  [["auth_token", nil], ["id", 1]]
+  ↳ app/models/user.rb:9
+Completed 200 OK in 3ms (ActiveRecord: 1.5ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2018-05-04 16:42:05 -0400
+Processing by SessionsController#create as */*
+  Parameters: {"username"=>"cat", "password"=>"[FILTERED]", "session"=>{"username"=>"cat", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "cat"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:13
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "cat"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[36mUser Update (0.4ms)[0m  [1m[33mUPDATE "users" SET "auth_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["auth_token", "Bxn8SHwbR4RZP4gZW97DArmf"], ["updated_at", "2018-05-04 20:42:05.751941"], ["id", 1]]
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/sessions_controller.rb:25
+Completed 200 OK in 80ms (Views: 0.2ms | ActiveRecord: 2.5ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2018-05-04 16:42:22 -0400
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"username"=>"frog", "password"=>"[FILTERED]", "email"=>"frog@frog.com", "name"=>"frog"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:5
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "frog"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:5
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "email", "name", "auth_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["username", "frog"], ["password_digest", "$2a$10$klCVTvo4DXrF7Q3jD.gVfuElsVgwt7l05U3ohlvjZhOWcFyzE8E9K"], ["email", "frog@frog.com"], ["name", "frog"], ["auth_token", "nYgkiJqGzeU7Y65N3uYxsQNy"], ["created_at", "2018-05-04 20:42:22.736407"], ["updated_at", "2018-05-04 20:42:22.736407"]]
+  ↳ app/controllers/users_controller.rb:5
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:5
+Completed 200 OK in 78ms (Views: 0.2ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-04 16:42:26 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "nYgkiJqGzeU7Y65N3uYxsQNy"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (0.6ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites"[0m
+  ↳ app/controllers/favorites_controller.rb:7
+Completed 200 OK in 4ms (Views: 1.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-04 16:42:41 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "nYgkiJqGzeU7Y65N3uYxsQNy"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (0.4ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites"[0m
+  ↳ app/controllers/favorites_controller.rb:7
+Completed 200 OK in 5ms (Views: 2.2ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/favorites" for 127.0.0.1 at 2018-05-04 16:43:17 -0400
+Processing by FavoritesController#create as */*
+  Parameters: {"favorite"=>{"drink_id"=>"11936", "name"=>"Pink Gin", "url"=>"https://www.thecocktaildb.com/images/media/drink/qyr51e1504888618.jpg"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "nYgkiJqGzeU7Y65N3uYxsQNy"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "nYgkiJqGzeU7Y65N3uYxsQNy"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[36mFavorite Create (0.6ms)[0m  [1m[32mINSERT INTO "favorites" ("drink_id", "name", "url", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["drink_id", "11936"], ["name", "Pink Gin"], ["url", "https://www.thecocktaildb.com/images/media/drink/qyr51e1504888618.jpg"], ["user_id", 9], ["created_at", "2018-05-04 20:43:17.099124"], ["updated_at", "2018-05-04 20:43:17.099124"]]
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/favorites_controller.rb:20
+Completed 200 OK in 6ms (Views: 0.4ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-04 16:43:20 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-04 16:43:22 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/favorites" for 127.0.0.1 at 2018-05-04 16:43:50 -0400
+Processing by FavoritesController#create as */*
+  Parameters: {"favorite"=>{"drink_id"=>"11936", "name"=>"Pink Gin", "url"=>"https://www.thecocktaildb.com/images/media/drink/qyr51e1504888618.jpg"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-04 16:43:53 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (10.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 11ms (Views: 0.2ms | ActiveRecord: 10.0ms)
+
+
+Started DELETE "/logout" for 127.0.0.1 at 2018-05-04 16:44:09 -0400
+Processing by SessionsController#destroy as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "null"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.2ms)
+
+
+  
+NoMethodError (undefined method `invalidate_token' for nil:NilClass):
+  
+app/controllers/sessions_controller.rb:29:in `logout'
+app/controllers/sessions_controller.rb:14:in `destroy'
+Started POST "/login" for 127.0.0.1 at 2018-05-04 16:44:14 -0400
+Processing by SessionsController#create as */*
+  Parameters: {"username"=>"frog", "password"=>"[FILTERED]", "session"=>{"username"=>"frog", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "frog"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:13
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "frog"], ["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[36mUser Update (0.4ms)[0m  [1m[33mUPDATE "users" SET "auth_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["auth_token", "nym6DuQ7RWPHzqNoueKMtFH1"], ["updated_at", "2018-05-04 20:44:15.023110"], ["id", 9]]
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/sessions_controller.rb:25
+Completed 200 OK in 80ms (Views: 0.2ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-04 16:44:16 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "nym6DuQ7RWPHzqNoueKMtFH1"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (0.4ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites"[0m
+  ↳ app/controllers/favorites_controller.rb:7
+Completed 200 OK in 4ms (Views: 1.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-04 16:45:01 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "nym6DuQ7RWPHzqNoueKMtFH1"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (1.0ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites"[0m
+  ↳ app/controllers/favorites_controller.rb:7
+Completed 200 OK in 5ms (Views: 2.0ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2018-05-05 13:28:15 -0400
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.0/lib/active_record/log_subscriber.rb:98
+Processing by SessionsController#create as */*
+  Parameters: {"username"=>"cat", "password"=>"[FILTERED]", "session"=>{"username"=>"cat", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "cat"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:13
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "cat"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[36mUser Update (1.7ms)[0m  [1m[33mUPDATE "users" SET "auth_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["auth_token", "zsjrf6jp4yNRVRYEiWZMFU9n"], ["updated_at", "2018-05-05 17:28:16.293488"], ["id", 1]]
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/sessions_controller.rb:25
+Completed 200 OK in 120ms (Views: 0.3ms | ActiveRecord: 16.1ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:28:20 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "zsjrf6jp4yNRVRYEiWZMFU9n"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (0.4ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites"[0m
+  ↳ app/controllers/favorites_controller.rb:7
+Completed 200 OK in 13ms (Views: 8.0ms | ActiveRecord: 7.3ms)
+
+
+Started DELETE "/favorites/7" for 127.0.0.1 at 2018-05-05 13:28:22 -0400
+Processing by FavoritesController#destroy as */*
+  Parameters: {"id"=>"7", "favorite"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "zsjrf6jp4yNRVRYEiWZMFU9n"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (0.2ms)[0m  [1m[34mSELECT  "favorites".* FROM "favorites" WHERE "favorites"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:31
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/favorites_controller.rb:32
+  [1m[36mFavorite Destroy (0.4ms)[0m  [1m[31mDELETE FROM "favorites" WHERE "favorites"."id" = $1[0m  [["id", 7]]
+  ↳ app/controllers/favorites_controller.rb:32
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/favorites_controller.rb:32
+Redirected to http://localhost:3000/favorites/7
+Completed 302 Found in 6ms (ActiveRecord: 2.3ms)
+
+
+Started DELETE "/favorites/7" for 127.0.0.1 at 2018-05-05 13:28:22 -0400
+Processing by FavoritesController#destroy as */*
+  Parameters: {"id"=>"7", "favorite"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "zsjrf6jp4yNRVRYEiWZMFU9n"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (0.3ms)[0m  [1m[34mSELECT  "favorites".* FROM "favorites" WHERE "favorites"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:31
+Completed 404 Not Found in 2ms (ActiveRecord: 0.5ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Favorite with 'id'=7):
+  
+app/controllers/favorites_controller.rb:31:in `destroy'
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:28:22 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "zsjrf6jp4yNRVRYEiWZMFU9n"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (0.3ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites"[0m
+  ↳ app/controllers/favorites_controller.rb:7
+Completed 200 OK in 4ms (Views: 2.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:28:37 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "zsjrf6jp4yNRVRYEiWZMFU9n"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (0.5ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites"[0m
+  ↳ app/controllers/favorites_controller.rb:7
+Completed 200 OK in 4ms (Views: 1.5ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/favorites" for 127.0.0.1 at 2018-05-05 13:30:43 -0400
+Processing by FavoritesController#create as */*
+  Parameters: {"favorite"=>{"drink_id"=>"11417", "name"=>"Gin Sour", "url"=>"https://www.thecocktaildb.com/images/media/drink/mt7l7m1504883523.jpg"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "zsjrf6jp4yNRVRYEiWZMFU9n"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "zsjrf6jp4yNRVRYEiWZMFU9n"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[36mFavorite Create (0.6ms)[0m  [1m[32mINSERT INTO "favorites" ("drink_id", "name", "url", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["drink_id", "11417"], ["name", "Gin Sour"], ["url", "https://www.thecocktaildb.com/images/media/drink/mt7l7m1504883523.jpg"], ["user_id", 1], ["created_at", "2018-05-05 17:30:43.847872"], ["updated_at", "2018-05-05 17:30:43.847872"]]
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[35m (6.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/favorites_controller.rb:20
+Completed 200 OK in 26ms (Views: 0.4ms | ActiveRecord: 7.3ms)
+
+
+Started POST "/favorites" for 127.0.0.1 at 2018-05-05 13:30:53 -0400
+Processing by FavoritesController#create as */*
+  Parameters: {"favorite"=>{"drink_id"=>"15024", "name"=>"Absolutely Cranberry Smash", "url"=>"https://www.thecocktaildb.com/images/media/drink/vqwstv1472811884.jpg"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:30:57 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 3ms (Views: 0.2ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:31:12 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 4ms (Views: 0.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:31:30 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:31:32 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.2ms | ActiveRecord: 0.8ms)
+
+
+Started DELETE "/logout" for 127.0.0.1 at 2018-05-05 13:31:39 -0400
+Processing by SessionsController#destroy as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.2ms)
+
+
+  
+NoMethodError (undefined method `invalidate_token' for nil:NilClass):
+  
+app/controllers/sessions_controller.rb:29:in `logout'
+app/controllers/sessions_controller.rb:14:in `destroy'
+Started POST "/login" for 127.0.0.1 at 2018-05-05 13:31:45 -0400
+Processing by SessionsController#create as */*
+  Parameters: {"username"=>"cat", "password"=>"[FILTERED]", "session"=>{"username"=>"cat", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "cat"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:13
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "cat"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[36mUser Update (1.8ms)[0m  [1m[33mUPDATE "users" SET "auth_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["auth_token", "nWGNyiz3kuib3gvf7E5CB8S2"], ["updated_at", "2018-05-05 17:31:45.667112"], ["id", 1]]
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/sessions_controller.rb:25
+Completed 200 OK in 80ms (Views: 0.3ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:31:46 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "nWGNyiz3kuib3gvf7E5CB8S2"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (3.0ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites"[0m
+  ↳ app/controllers/favorites_controller.rb:7
+Completed 200 OK in 9ms (Views: 2.9ms | ActiveRecord: 4.4ms)
+
+
+Started DELETE "/logout" for 127.0.0.1 at 2018-05-05 13:32:02 -0400
+Processing by SessionsController#destroy as */*
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "nWGNyiz3kuib3gvf7E5CB8S2"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mUser Update (1.2ms)[0m  [1m[33mUPDATE "users" SET "auth_token" = $1 WHERE "users"."id" = $2[0m  [["auth_token", nil], ["id", 1]]
+  ↳ app/models/user.rb:9
+Completed 200 OK in 3ms (ActiveRecord: 1.8ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2018-05-05 13:32:06 -0400
+Processing by SessionsController#create as */*
+  Parameters: {"username"=>"cat", "password"=>"[FILTERED]", "session"=>{"username"=>"cat", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "cat"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:13
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "cat"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[36mUser Update (0.4ms)[0m  [1m[33mUPDATE "users" SET "auth_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["auth_token", "Kmmt3pwGyiQyASKN9cMVhEHN"], ["updated_at", "2018-05-05 17:32:07.006467"], ["id", 1]]
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/sessions_controller.rb:25
+Completed 200 OK in 80ms (Views: 0.3ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:32:09 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "Kmmt3pwGyiQyASKN9cMVhEHN"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (0.4ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites"[0m
+  ↳ app/controllers/favorites_controller.rb:7
+Completed 200 OK in 4ms (Views: 1.8ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/favorites" for 127.0.0.1 at 2018-05-05 13:32:19 -0400
+Processing by FavoritesController#create as */*
+  Parameters: {"favorite"=>{"drink_id"=>"14029", "name"=>"'57 Chevy with a White License Plate", "url"=>"https://www.thecocktaildb.com/images/media/drink/qyyvtu1468878544.jpg"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "Kmmt3pwGyiQyASKN9cMVhEHN"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "Kmmt3pwGyiQyASKN9cMVhEHN"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[36mFavorite Create (0.4ms)[0m  [1m[32mINSERT INTO "favorites" ("drink_id", "name", "url", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["drink_id", "14029"], ["name", "'57 Chevy with a White License Plate"], ["url", "https://www.thecocktaildb.com/images/media/drink/qyyvtu1468878544.jpg"], ["user_id", 1], ["created_at", "2018-05-05 17:32:19.149184"], ["updated_at", "2018-05-05 17:32:19.149184"]]
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/favorites_controller.rb:20
+Completed 200 OK in 7ms (Views: 0.4ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:32:22 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:32:53 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started DELETE "/logout" for 127.0.0.1 at 2018-05-05 13:37:23 -0400
+Processing by SessionsController#destroy as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.2ms)
+
+
+  
+NoMethodError (undefined method `invalidate_token' for nil:NilClass):
+  
+app/controllers/sessions_controller.rb:29:in `logout'
+app/controllers/sessions_controller.rb:14:in `destroy'
+Started POST "/login" for 127.0.0.1 at 2018-05-05 13:37:27 -0400
+Processing by SessionsController#create as */*
+  Parameters: {"username"=>"cat", "password"=>"[FILTERED]", "session"=>{"username"=>"cat", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "cat"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:13
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "cat"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "auth_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["auth_token", "J3nRxhykQibYPtsdkqBnwJ8a"], ["updated_at", "2018-05-05 17:37:27.840783"], ["id", 1]]
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/sessions_controller.rb:25
+Completed 200 OK in 79ms (Views: 0.2ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:37:30 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "J3nRxhykQibYPtsdkqBnwJ8a"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (2.9ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites"[0m
+  ↳ app/controllers/favorites_controller.rb:7
+Completed 200 OK in 7ms (Views: 1.9ms | ActiveRecord: 3.4ms)
+
+
+Started POST "/favorites" for 127.0.0.1 at 2018-05-05 13:37:39 -0400
+Processing by FavoritesController#create as */*
+  Parameters: {"favorite"=>{"drink_id"=>"15395", "name"=>"1-900-FUK-MEUP", "url"=>"https://www.thecocktaildb.com/images/media/drink/uxywyw1468877224.jpg"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "J3nRxhykQibYPtsdkqBnwJ8a"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "J3nRxhykQibYPtsdkqBnwJ8a"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[36mFavorite Create (0.3ms)[0m  [1m[32mINSERT INTO "favorites" ("drink_id", "name", "url", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["drink_id", "15395"], ["name", "1-900-FUK-MEUP"], ["url", "https://www.thecocktaildb.com/images/media/drink/uxywyw1468877224.jpg"], ["user_id", 1], ["created_at", "2018-05-05 17:37:39.585246"], ["updated_at", "2018-05-05 17:37:39.585246"]]
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/favorites_controller.rb:20
+Completed 200 OK in 7ms (Views: 0.5ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:37:42 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 3ms (Views: 0.2ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:40:05 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (2.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 5ms (Views: 0.4ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:40:09 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:40:11 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (6.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 8ms (Views: 0.3ms | ActiveRecord: 6.2ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:40:27 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:40:29 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (17.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 19ms (Views: 0.2ms | ActiveRecord: 17.4ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:40:37 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:42:39 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:42:42 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:42:47 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:44:33 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:45:54 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:45:56 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:46:04 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:48:09 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:48:15 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 4ms (Views: 0.3ms | ActiveRecord: 2.0ms)
+
+
+Started DELETE "/logout" for 127.0.0.1 at 2018-05-05 13:48:28 -0400
+Processing by SessionsController#destroy as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.2ms)
+
+
+  
+NoMethodError (undefined method `invalidate_token' for nil:NilClass):
+  
+app/controllers/sessions_controller.rb:29:in `logout'
+app/controllers/sessions_controller.rb:14:in `destroy'
+Started POST "/login" for 127.0.0.1 at 2018-05-05 13:48:32 -0400
+Processing by SessionsController#create as */*
+  Parameters: {"username"=>"cat", "password"=>"[FILTERED]", "session"=>{"username"=>"cat", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "cat"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:13
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "cat"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "auth_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["auth_token", "vjY499STskaXoCkWQK2yYYY6"], ["updated_at", "2018-05-05 17:48:32.646785"], ["id", 1]]
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/sessions_controller.rb:25
+Completed 200 OK in 78ms (Views: 0.2ms | ActiveRecord: 2.3ms)
+
+
+Started POST "/favorites" for 127.0.0.1 at 2018-05-05 13:48:40 -0400
+Processing by FavoritesController#create as */*
+  Parameters: {"favorite"=>{"drink_id"=>"11010", "name"=>"After Dinner Cocktail", "url"=>"https://www.thecocktaildb.com/images/media/drink/vtytxq1483387578.jpg"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "vjY499STskaXoCkWQK2yYYY6"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "vjY499STskaXoCkWQK2yYYY6"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[36mFavorite Create (0.5ms)[0m  [1m[32mINSERT INTO "favorites" ("drink_id", "name", "url", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["drink_id", "11010"], ["name", "After Dinner Cocktail"], ["url", "https://www.thecocktaildb.com/images/media/drink/vtytxq1483387578.jpg"], ["user_id", 1], ["created_at", "2018-05-05 17:48:40.372521"], ["updated_at", "2018-05-05 17:48:40.372521"]]
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/favorites_controller.rb:20
+Completed 200 OK in 8ms (Views: 0.4ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:48:45 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:49:08 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:49:12 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:49:15 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.3ms | ActiveRecord: 0.3ms)
+
+
+Started DELETE "/logout" for 127.0.0.1 at 2018-05-05 13:49:20 -0400
+Processing by SessionsController#destroy as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.2ms)
+
+
+  
+NoMethodError (undefined method `invalidate_token' for nil:NilClass):
+  
+app/controllers/sessions_controller.rb:29:in `logout'
+app/controllers/sessions_controller.rb:14:in `destroy'
+Started POST "/login" for 127.0.0.1 at 2018-05-05 13:49:25 -0400
+Processing by SessionsController#create as */*
+  Parameters: {"username"=>"cat", "password"=>"[FILTERED]", "session"=>{"username"=>"cat", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "cat"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:13
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "cat"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "auth_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["auth_token", "U1nVyeL9iHXCM8EbpLGAqwj1"], ["updated_at", "2018-05-05 17:49:25.195939"], ["id", 1]]
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/sessions_controller.rb:25
+Completed 200 OK in 80ms (Views: 0.2ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:49:27 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (5.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "U1nVyeL9iHXCM8EbpLGAqwj1"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (5.1ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites"[0m
+  ↳ app/controllers/favorites_controller.rb:7
+Completed 200 OK in 19ms (Views: 5.3ms | ActiveRecord: 10.5ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:49:33 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "U1nVyeL9iHXCM8EbpLGAqwj1"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (16.9ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites"[0m
+  ↳ app/controllers/favorites_controller.rb:7
+Completed 200 OK in 21ms (Views: 2.3ms | ActiveRecord: 17.2ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:49:37 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "U1nVyeL9iHXCM8EbpLGAqwj1"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (0.4ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites"[0m
+  ↳ app/controllers/favorites_controller.rb:7
+Completed 200 OK in 5ms (Views: 2.5ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:49:52 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (9.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "U1nVyeL9iHXCM8EbpLGAqwj1"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (0.5ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites"[0m
+  ↳ app/controllers/favorites_controller.rb:7
+Completed 200 OK in 14ms (Views: 2.5ms | ActiveRecord: 9.6ms)
+
+
+Started DELETE "/logout" for 127.0.0.1 at 2018-05-05 13:49:57 -0400
+Processing by SessionsController#destroy as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "U1nVyeL9iHXCM8EbpLGAqwj1"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mUser Update (1.3ms)[0m  [1m[33mUPDATE "users" SET "auth_token" = $1 WHERE "users"."id" = $2[0m  [["auth_token", nil], ["id", 1]]
+  ↳ app/models/user.rb:9
+Completed 200 OK in 3ms (ActiveRecord: 1.5ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2018-05-05 13:50:01 -0400
+Processing by SessionsController#create as */*
+  Parameters: {"username"=>"cat", "password"=>"[FILTERED]", "session"=>{"username"=>"cat", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "cat"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:13
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "cat"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "auth_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["auth_token", "avXMd41zB1eDHbLtMJCpPjMz"], ["updated_at", "2018-05-05 17:50:01.994895"], ["id", 1]]
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/sessions_controller.rb:25
+Completed 200 OK in 78ms (Views: 0.2ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:50:03 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "avXMd41zB1eDHbLtMJCpPjMz"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (0.6ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites"[0m
+  ↳ app/controllers/favorites_controller.rb:7
+Completed 200 OK in 6ms (Views: 3.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:50:05 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "avXMd41zB1eDHbLtMJCpPjMz"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (1.1ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites"[0m
+  ↳ app/controllers/favorites_controller.rb:7
+Completed 200 OK in 7ms (Views: 3.0ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:50:07 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (14.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "avXMd41zB1eDHbLtMJCpPjMz"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (0.6ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites"[0m
+  ↳ app/controllers/favorites_controller.rb:7
+Completed 200 OK in 19ms (Views: 1.8ms | ActiveRecord: 15.4ms)
+
+
+Started DELETE "/favorites/6" for 127.0.0.1 at 2018-05-05 13:50:14 -0400
+Processing by FavoritesController#destroy as */*
+  Parameters: {"id"=>"6", "favorite"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "avXMd41zB1eDHbLtMJCpPjMz"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (0.2ms)[0m  [1m[34mSELECT  "favorites".* FROM "favorites" WHERE "favorites"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:31
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/favorites_controller.rb:32
+  [1m[36mFavorite Destroy (2.3ms)[0m  [1m[31mDELETE FROM "favorites" WHERE "favorites"."id" = $1[0m  [["id", 6]]
+  ↳ app/controllers/favorites_controller.rb:32
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/favorites_controller.rb:32
+Redirected to http://localhost:3000/favorites/6
+Completed 302 Found in 7ms (ActiveRecord: 3.3ms)
+
+
+Started DELETE "/favorites/6" for 127.0.0.1 at 2018-05-05 13:50:14 -0400
+Processing by FavoritesController#destroy as */*
+  Parameters: {"id"=>"6", "favorite"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "avXMd41zB1eDHbLtMJCpPjMz"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (0.4ms)[0m  [1m[34mSELECT  "favorites".* FROM "favorites" WHERE "favorites"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:31
+Completed 404 Not Found in 3ms (ActiveRecord: 0.8ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Favorite with 'id'=6):
+  
+app/controllers/favorites_controller.rb:31:in `destroy'
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:50:14 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "avXMd41zB1eDHbLtMJCpPjMz"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (0.7ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites"[0m
+  ↳ app/controllers/favorites_controller.rb:7
+Completed 200 OK in 4ms (Views: 2.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:50:16 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (4.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "avXMd41zB1eDHbLtMJCpPjMz"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (0.7ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites"[0m
+  ↳ app/controllers/favorites_controller.rb:7
+Completed 200 OK in 10ms (Views: 2.7ms | ActiveRecord: 5.6ms)
+
+
+Started POST "/favorites" for 127.0.0.1 at 2018-05-05 13:50:25 -0400
+Processing by FavoritesController#create as */*
+  Parameters: {"favorite"=>{"drink_id"=>"15194", "name"=>"Amaretto Shake", "url"=>"https://www.thecocktaildb.com/images/media/drink/xk79al1493069655.jpg"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "avXMd41zB1eDHbLtMJCpPjMz"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "avXMd41zB1eDHbLtMJCpPjMz"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[36mFavorite Create (0.3ms)[0m  [1m[32mINSERT INTO "favorites" ("drink_id", "name", "url", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["drink_id", "15194"], ["name", "Amaretto Shake"], ["url", "https://www.thecocktaildb.com/images/media/drink/xk79al1493069655.jpg"], ["user_id", 1], ["created_at", "2018-05-05 17:50:25.309229"], ["updated_at", "2018-05-05 17:50:25.309229"]]
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[35m (6.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/favorites_controller.rb:20
+Completed 200 OK in 11ms (Views: 0.6ms | ActiveRecord: 6.7ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:50:29 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 4ms (Views: 0.2ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:57:19 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 3ms (Views: 0.2ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:58:00 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.1ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:58:08 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (6.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 8ms (Views: 0.2ms | ActiveRecord: 6.2ms)
+
+
+Started DELETE "/logout" for 127.0.0.1 at 2018-05-05 13:58:17 -0400
+Processing by SessionsController#destroy as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.3ms)
+
+
+  
+NoMethodError (undefined method `invalidate_token' for nil:NilClass):
+  
+app/controllers/sessions_controller.rb:29:in `logout'
+app/controllers/sessions_controller.rb:14:in `destroy'
+Started POST "/login" for 127.0.0.1 at 2018-05-05 13:58:22 -0400
+Processing by SessionsController#create as */*
+  Parameters: {"username"=>"cat", "password"=>"[FILTERED]", "session"=>{"username"=>"cat", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "cat"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:13
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "cat"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[36mUser Update (0.5ms)[0m  [1m[33mUPDATE "users" SET "auth_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["auth_token", "EAdNQispVj27Q6uSoWvH3gd2"], ["updated_at", "2018-05-05 17:58:22.698958"], ["id", 1]]
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/sessions_controller.rb:25
+Completed 200 OK in 75ms (Views: 0.2ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:58:23 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "EAdNQispVj27Q6uSoWvH3gd2"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (1.4ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites"[0m
+  ↳ app/controllers/favorites_controller.rb:7
+Completed 200 OK in 8ms (Views: 2.5ms | ActiveRecord: 2.6ms)
+
+
+Started POST "/favorites" for 127.0.0.1 at 2018-05-05 13:58:41 -0400
+Processing by FavoritesController#create as */*
+  Parameters: {"favorite"=>{"drink_id"=>"15395", "name"=>"1-900-FUK-MEUP", "url"=>"https://www.thecocktaildb.com/images/media/drink/uxywyw1468877224.jpg"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "EAdNQispVj27Q6uSoWvH3gd2"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "EAdNQispVj27Q6uSoWvH3gd2"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[36mFavorite Create (0.5ms)[0m  [1m[32mINSERT INTO "favorites" ("drink_id", "name", "url", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["drink_id", "15395"], ["name", "1-900-FUK-MEUP"], ["url", "https://www.thecocktaildb.com/images/media/drink/uxywyw1468877224.jpg"], ["user_id", 1], ["created_at", "2018-05-05 17:58:41.794897"], ["updated_at", "2018-05-05 17:58:41.794897"]]
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/favorites_controller.rb:20
+Completed 200 OK in 6ms (Views: 0.4ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 13:58:50 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (15.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 17ms (Views: 0.2ms | ActiveRecord: 15.2ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 14:00:13 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.3ms)
+
+
+Started DELETE "/logout" for 127.0.0.1 at 2018-05-05 14:00:21 -0400
+Processing by SessionsController#destroy as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.3ms)
+
+
+  
+NoMethodError (undefined method `invalidate_token' for nil:NilClass):
+  
+app/controllers/sessions_controller.rb:29:in `logout'
+app/controllers/sessions_controller.rb:14:in `destroy'
+Started POST "/login" for 127.0.0.1 at 2018-05-05 14:00:26 -0400
+Processing by SessionsController#create as */*
+  Parameters: {"username"=>"cat", "password"=>"[FILTERED]", "session"=>{"username"=>"cat", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "cat"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:13
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "cat"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "auth_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["auth_token", "zgSdc9xhVg6Azeb1v8YMWAvv"], ["updated_at", "2018-05-05 18:00:26.386690"], ["id", 1]]
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/sessions_controller.rb:25
+Completed 200 OK in 73ms (Views: 0.2ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 14:00:28 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (4.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "zgSdc9xhVg6Azeb1v8YMWAvv"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (0.7ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites"[0m
+  ↳ app/controllers/favorites_controller.rb:7
+Completed 200 OK in 10ms (Views: 3.2ms | ActiveRecord: 4.8ms)
+
+
+Started POST "/favorites" for 127.0.0.1 at 2018-05-05 14:00:34 -0400
+Processing by FavoritesController#create as */*
+  Parameters: {"favorite"=>{"drink_id"=>"15423", "name"=>"110 in the shade", "url"=>"https://www.thecocktaildb.com/images/media/drink/xxyywq1454511117.jpg"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "zgSdc9xhVg6Azeb1v8YMWAvv"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "zgSdc9xhVg6Azeb1v8YMWAvv"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[36mFavorite Create (0.4ms)[0m  [1m[32mINSERT INTO "favorites" ("drink_id", "name", "url", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["drink_id", "15423"], ["name", "110 in the shade"], ["url", "https://www.thecocktaildb.com/images/media/drink/xxyywq1454511117.jpg"], ["user_id", 1], ["created_at", "2018-05-05 18:00:34.499723"], ["updated_at", "2018-05-05 18:00:34.499723"]]
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/favorites_controller.rb:20
+Completed 200 OK in 5ms (Views: 0.3ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 14:00:38 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 3ms (Views: 0.2ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 14:01:18 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 14:06:21 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 14:08:45 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 14:08:49 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 3ms (Views: 0.2ms | ActiveRecord: 0.8ms)
+
+
+Started DELETE "/logout" for 127.0.0.1 at 2018-05-05 14:09:04 -0400
+Processing by SessionsController#destroy as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.3ms)
+
+
+  
+NoMethodError (undefined method `invalidate_token' for nil:NilClass):
+  
+app/controllers/sessions_controller.rb:29:in `logout'
+app/controllers/sessions_controller.rb:14:in `destroy'
+Started POST "/login" for 127.0.0.1 at 2018-05-05 14:09:12 -0400
+Processing by SessionsController#create as */*
+  Parameters: {"username"=>"cat", "password"=>"[FILTERED]", "session"=>{"username"=>"cat", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "cat"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:13
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "cat"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "auth_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["auth_token", "twZSEj5ZmS7tefFpRrQg9syQ"], ["updated_at", "2018-05-05 18:09:12.786874"], ["id", 1]]
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/sessions_controller.rb:25
+Completed 200 OK in 75ms (Views: 0.2ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 14:09:15 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (5.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "twZSEj5ZmS7tefFpRrQg9syQ"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (0.5ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites"[0m
+  ↳ app/controllers/favorites_controller.rb:7
+Completed 200 OK in 13ms (Views: 4.3ms | ActiveRecord: 6.1ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 14:09:21 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "twZSEj5ZmS7tefFpRrQg9syQ"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (0.4ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites"[0m
+  ↳ app/controllers/favorites_controller.rb:7
+Completed 200 OK in 5ms (Views: 3.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 14:10:09 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "twZSEj5ZmS7tefFpRrQg9syQ"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (0.5ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites"[0m
+  ↳ app/controllers/favorites_controller.rb:7
+Completed 200 OK in 6ms (Views: 4.2ms | ActiveRecord: 0.7ms)
+
+
+Started DELETE "/logout" for 127.0.0.1 at 2018-05-05 14:10:12 -0400
+Processing by SessionsController#destroy as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "twZSEj5ZmS7tefFpRrQg9syQ"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mUser Update (1.4ms)[0m  [1m[33mUPDATE "users" SET "auth_token" = $1 WHERE "users"."id" = $2[0m  [["auth_token", nil], ["id", 1]]
+  ↳ app/models/user.rb:9
+Completed 200 OK in 3ms (ActiveRecord: 1.6ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 14:10:14 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "null"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.3ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2018-05-05 14:10:25 -0400
+Processing by SessionsController#create as */*
+  Parameters: {"username"=>"cat", "password"=>"[FILTERED]", "session"=>{"username"=>"cat", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "cat"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:13
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "cat"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[36mUser Update (0.4ms)[0m  [1m[33mUPDATE "users" SET "auth_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["auth_token", "RyKuzhRMjZJ2BSK2Skir2wXr"], ["updated_at", "2018-05-05 18:10:25.411961"], ["id", 1]]
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/sessions_controller.rb:25
+Completed 200 OK in 74ms (Views: 0.2ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 14:10:26 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "RyKuzhRMjZJ2BSK2Skir2wXr"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (0.9ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites"[0m
+  ↳ app/controllers/favorites_controller.rb:7
+Completed 200 OK in 6ms (Views: 3.4ms | ActiveRecord: 1.4ms)
+
+
+Started POST "/favorites" for 127.0.0.1 at 2018-05-05 14:10:36 -0400
+Processing by FavoritesController#create as */*
+  Parameters: {"favorites"=>{"drink_id"=>"15395", "name"=>"1-900-FUK-MEUP", "url"=>"https://www.thecocktaildb.com/images/media/drink/uxywyw1468877224.jpg"}, "favorite"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "RyKuzhRMjZJ2BSK2Skir2wXr"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.2ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: favorite):
+  
+app/controllers/favorites_controller.rb:38:in `favorite_params'
+app/controllers/favorites_controller.rb:17:in `create'
+Started DELETE "/logout" for 127.0.0.1 at 2018-05-05 14:10:55 -0400
+Processing by SessionsController#destroy as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.2ms)
+
+
+  
+NoMethodError (undefined method `invalidate_token' for nil:NilClass):
+  
+app/controllers/sessions_controller.rb:29:in `logout'
+app/controllers/sessions_controller.rb:14:in `destroy'
+Started POST "/login" for 127.0.0.1 at 2018-05-05 14:10:59 -0400
+Processing by SessionsController#create as */*
+  Parameters: {"username"=>"cat", "password"=>"[FILTERED]", "session"=>{"username"=>"cat", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "cat"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:13
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "cat"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "auth_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["auth_token", "ozzg5hq8hrYcivYvgJryT9Nd"], ["updated_at", "2018-05-05 18:10:59.244528"], ["id", 1]]
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/sessions_controller.rb:25
+Completed 200 OK in 76ms (Views: 0.2ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 14:14:22 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "ozzg5hq8hrYcivYvgJryT9Nd"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (1.1ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites"[0m
+  ↳ app/controllers/favorites_controller.rb:7
+Completed 200 OK in 7ms (Views: 3.8ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 14:16:23 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "ozzg5hq8hrYcivYvgJryT9Nd"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (4.4ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites"[0m
+  ↳ app/controllers/favorites_controller.rb:7
+Completed 200 OK in 149ms (Views: 15.2ms | ActiveRecord: 159.5ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 14:16:27 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "ozzg5hq8hrYcivYvgJryT9Nd"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (0.4ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites"[0m
+  ↳ app/controllers/favorites_controller.rb:7
+Completed 200 OK in 4ms (Views: 2.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 14:16:29 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "ozzg5hq8hrYcivYvgJryT9Nd"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (0.5ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites"[0m
+  ↳ app/controllers/favorites_controller.rb:7
+Completed 200 OK in 7ms (Views: 4.7ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/favorites" for 127.0.0.1 at 2018-05-05 14:16:35 -0400
+Processing by FavoritesController#create as */*
+  Parameters: {"favorites"=>{"drink_id"=>"15346", "name"=>"155 Belmont", "url"=>"https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg"}, "favorite"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "ozzg5hq8hrYcivYvgJryT9Nd"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Completed 400 Bad Request in 2ms (ActiveRecord: 0.2ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: favorite):
+  
+app/controllers/favorites_controller.rb:38:in `favorite_params'
+app/controllers/favorites_controller.rb:17:in `create'
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 14:16:40 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 14:16:49 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/drinks/drink.strDrinkThumb" for 127.0.0.1 at 2018-05-05 15:03:06 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/drinks/drink.strDrinkThumb"):
+  
+actionpack (5.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+actionpack (5.2.0) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.0) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.0) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.0) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.0) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.0) lib/rails/rack/logger.rb:26:in `call'
+actionpack (5.2.0) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.0) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.0) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.0) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.0) lib/rails/engine.rb:524:in `call'
+puma (3.11.4) lib/puma/configuration.rb:225:in `call'
+puma (3.11.4) lib/puma/server.rb:632:in `handle_request'
+puma (3.11.4) lib/puma/server.rb:446:in `process_client'
+puma (3.11.4) lib/puma/server.rb:306:in `block in run'
+puma (3.11.4) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 16:54:47 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.2ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 17:15:59 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Filter chain halted as :require_login rendered or redirected
+Completed 401 Unauthorized in 3ms (Views: 0.2ms | ActiveRecord: 1.7ms)
+
+
+Started DELETE "/logout" for 127.0.0.1 at 2018-05-05 17:16:08 -0400
+Processing by SessionsController#destroy as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.5ms)
+
+
+  
+NoMethodError (undefined method `invalidate_token' for nil:NilClass):
+  
+app/controllers/sessions_controller.rb:29:in `logout'
+app/controllers/sessions_controller.rb:14:in `destroy'
+Started POST "/login" for 127.0.0.1 at 2018-05-05 17:16:19 -0400
+Processing by SessionsController#create as */*
+  Parameters: {"username"=>"cat", "password"=>"[FILTERED]", "session"=>{"username"=>"cat", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "cat"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:13
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "cat"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[36mUser Update (2.0ms)[0m  [1m[33mUPDATE "users" SET "auth_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["auth_token", "crqaxfACW4vMdApWJxemjnNW"], ["updated_at", "2018-05-05 21:16:19.906478"], ["id", 1]]
+  ↳ app/controllers/sessions_controller.rb:25
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/sessions_controller.rb:25
+Completed 200 OK in 81ms (Views: 0.1ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 17:16:22 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "crqaxfACW4vMdApWJxemjnNW"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (5.6ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites"[0m
+  ↳ app/controllers/favorites_controller.rb:7
+Completed 200 OK in 18ms (Views: 3.8ms | ActiveRecord: 5.9ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2018-05-05 17:16:25 -0400
+Processing by FavoritesController#index as */*
+  Parameters: {"favorite"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "crqaxfACW4vMdApWJxemjnNW"], ["LIMIT", 1]]
+  ↳ app/controllers/api_controller.rb:21
+  [1m[36mFavorite Load (0.5ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites"[0m
+  ↳ app/controllers/favorites_controller.rb:7
+Completed 200 OK in 7ms (Views: 4.5ms | ActiveRecord: 0.9ms)
+
+

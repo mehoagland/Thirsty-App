@@ -20,7 +20,7 @@ class FavoritesController < ApiController
       if favorite.save
         render json: {
           message: 'ok',
-          favorite: favorite,
+          favorites: favorites,
         }
       else
         render json: {message: 'Could not create favorite'}

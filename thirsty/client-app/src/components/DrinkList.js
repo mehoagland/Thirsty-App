@@ -53,12 +53,16 @@ class DrinkList extends Component {
 
   renderDrinks() {
     return this.state.drinkData.map(drink => (
-      <div className="all-drinks">
-        <div className="image">
-          <img src={drink.strDrinkThumb} className="main-drinks" />
-        </div>
-        <Link to={`/drinks/single/${drink.idDrink}`} className="drink-name">
-          {drink.strDrink}
+      <div>
+        <Link className="no" to={`/drinks/single/${drink.idDrink}`}>
+          <div
+            style={{ backgroundImage: "url(" + drink.strDrinkThumb + ")" }}
+            className="drink-list"
+          >
+            <div className="text-rapper">
+              <div className="drink-name">{drink.strDrink}</div>
+            </div>
+          </div>
         </Link>
       </div>
     ));
@@ -66,13 +70,11 @@ class DrinkList extends Component {
 
   render() {
     return (
-      <div className="wrapper">
-        <div className="container">
-          <div className="search-component">
-            <Search searchBar={Search} onSearch={this.getSearchResults} />
-          </div>
-          {this.state.apiDataLoaded ? this.renderDrinks() : <div>Loading</div>}
+      <div className="container">
+        <div className="search-component">
+          <Search searchBar={Search} onSearch={this.getSearchResults} />
         </div>
+        {this.state.apiDataLoaded ? this.renderDrinks() : <div>Loading</div>}
       </div>
     );
   }

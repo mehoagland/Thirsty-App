@@ -1,11 +1,153 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/*
+ STYLES BEGIN BELOW
+ */
+
 @import url("https://fonts.googleapis.com/css?family=Quicksand");
 
-.wrapper {
-  height: 736px;
-  width: 414px;
-  margin: 0 auto;
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  height: 100%;
+  width: 100%;
   font-family: "Quicksand", sans-serif;
-  /* border: 3px solid green; */
 }
 
 .think {
@@ -26,80 +168,138 @@
   border: 1px solid black;
   display: flex;
   flex-wrap: wrap;
-  height: 736px;
-  width: 414px;
-  overflow: scroll;
+  justify-content: space-around;
+  height: 100%;
+  width: 100%;
 }
 
 .all-drinks {
-  height: 10px;
-  border: black solid 1px;
-  display: table;
-  width: 100px;
-  height: 100px;
-  margin-bottom: 5px;
-  font-size: 10px;
-  margin: 0 auto;
+  /* border: black solid 1px; */
+  width: 160px;
+  height: 160px;
+  text-align: center;
+  background-size: cover;
+}
+
+.drink-list {
+  margin: 15px;
+  margin-top: 20px;
+
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.4);
+  border: 1px solid black;
+  height: 190px;
+  width: 190px;
+  background-size: cover;
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+}
+
+.no {
+  text-decoration: none;
+}
+
+.drink-list:hover {
+  transform: scale(1.1);
+  transition: 0.2s;
+  box-shadow: 0px 0px 23px 3px rgba(0, 0, 0, 0.3);
 }
 
 /* images for DrinkList */
 .main-drinks {
-  display: table-row;
-  width: 120px;
+  width: 100%;
+  height: 150px;
+  width: 150px;
+}
+
+.text-rapper {
+  background-color: rgba(255, 255, 255, 1);
+  align-self: flex-end;
+  width: 100%;
+  text-align: center;
+  padding: 7px 0px 9px 0px;
+  text-decoration: none;
 }
 
 .drink-name {
-  background-color: white;
-  display: table-row;
-  width: 100px;
-  height: 30px;
+  font-size: 19px;
+  width: 100%;
+  height: auto;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  transition: 0.2s;
+}
+.title {
+  /* border: 1px solid black; */
+  height: auto;
+  width: 100%;
+  font-size: 50px;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-.name {
-  margin-left: 10px;
+.singleDataImg {
+  flex: 1;
+  height: 400px;
+  max-width: 400px;
+  min-width: 300px;
+  min-height: 300px;
+  background-size: cover;
+  margin-bottom: 20px;
+  margin: 10px;
+}
+.yes {
+  height: auto;
+}
+
+.container2 {
+  /* border: 1px solid black; */
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.ingredients {
+  border: 3px solid black;
+  padding: 10px;
+}
+
+.directions {
+  border: 1px solid black;
+  max-width: 400px;
 }
 
 .NavBar {
   border: 1px solid black;
-  height: 70px;
-  width: 414px;
   background-color: #e5e347;
-}
-
-.singleDataImg {
-  height: 300px;
-  width: 300px;
-  margin-left: 10px;
-}
-
-.ingredients {
-  /* border: 3px solid orange; */
-  width: 400px;
-  display: block;
-  margin-left: 10px;
-}
-
-.directions {
-  width: 400px;
-  margin-left: 10px;
-  /* border: 3px solid red; */
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: space-around;
 }
 
 .nav-img {
   width: 35px;
-  display: inline-block;
   margin-left: 15px;
   margin-top: 5px;
-}
-
-.nav-images {
-  /* border: 1px solid black; */
+  align-items: center;
+  margin: 0 auto;
+  border: 1px dotted black;
 }
 
 .spacer {
   border: 1px solid black;
-  width: 65px;
-  display: inline-block;
+  width: 100%;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-top: 20px;
 }
 
 .links {
@@ -112,18 +312,22 @@
 }
 
 .search-component {
-  margin: 0 auto;
+  text-align: center;
   border: 1px solid black;
   margin-bottom: 40px;
   margin-top: 20px;
-  display: flex;
+  display: inline-block;
+  margin: 0 auto;
+  width: 100%;
 }
+
 .search {
   margin: 0 auto;
   /* border: 1px solid black; */
   margin-bottom: 40px;
   margin-top: 20px;
   display: flex;
+  width: 340px;
 }
 .searchBar {
   width: 20vw;
@@ -136,4 +340,10 @@
   order: -1;
   width: 20px;
   height: 20px;
+}
+
+@media only screen and (max-width: 450px) {
+  .title {
+    font-size: 30px;
+  }
 }
