@@ -59,37 +59,43 @@ class Favorite extends Component {
 
   renderFavorites() {
     console.log(this.state.favoriteList);
-    return this.state.favoriteList.map(favorite => {
-      return (
-        <div className="favs" key={favorite.id}>
-          <img src={favorite.url} className="favListImg" />
-          <Link to={`/drinks/single/${favorite.id}`}>{favorite.name}</Link>
+    return this.state.favoriteList.map(favorite => (
+      <div>
+        <Link className="no" to={`/drinks/single/${favorite.drink_id}`}>
+          <div
+            style={{ backgroundImage: "url(" + favorite.url + ")" }}
+            className="drink-list"
+          >
+            <div className="text-rapper">
+              <div className="drink-name">{favorite.name}</div>
+            </div>
+          </div>
+        </Link>
+        <div className="button">
           <button
             onClick={e => {
               this.deleteFavorite(favorite.id);
               console.log(favorite.id);
             }}
           >
+            {" "}
             Delete
           </button>
         </div>
-      );
-    });
+      </div>
+    ));
   }
 
   render() {
     return (
-      <div className="wrapper">
-        <div className="container">
-          {this.state.favoriteListLoaded ? (
-            this.renderFavorites()
-          ) : (
-            <p>Loading...</p>
-          )}
-          <div>
-            hello
-            <Link to={"/drinks/favorites"}> </Link>
-          </div>
+      <div className="container">
+        {this.state.favoriteListLoaded ? (
+          this.renderFavorites()
+        ) : (
+          <p>Loading...</p>
+        )}
+        <div>
+          <Link to={"/drinks/favorites"}> </Link>
         </div>
       </div>
     );

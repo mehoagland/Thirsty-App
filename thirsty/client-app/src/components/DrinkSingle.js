@@ -9,6 +9,7 @@ class DrinkSingle extends Component {
     this.state = {
       singleDrinkData: null,
       singleDrinkDataLoaded: false,
+
       auth: Auth.isUserAuthenticated()
     };
     this.specificKeyFilter = this.specificKeyFilter.bind(this);
@@ -43,8 +44,7 @@ class DrinkSingle extends Component {
           auth: Auth.isUserAuthenticated()
         });
         alert("added successfully");
-      })
-      .catch(err => console.log("FETCH ERROR: " + err));
+      });
   }
 
   specificKeyFilter = (someObject, partial) => {
@@ -133,13 +133,13 @@ class DrinkSingle extends Component {
         />
 
         <div className="ingredients">
-          <h2> Ingredients: </h2>
+          <h2 className="ingredients-name"> Ingredients: </h2>
           <p>{ingredientsMatch} </p>
           <div className="directions">
-            <h2>Directions:</h2>
+            <h2 className="directions-name">Directions:</h2>
             <p>{this.state.singleDrinkData.strInstructions}</p>
           </div>
-          <button onClick={() => this.addToFavorites()}>
+          <button onClick={() => this.addToFavorites()} className="addFav">
             Add to Favorites
           </button>
         </div>

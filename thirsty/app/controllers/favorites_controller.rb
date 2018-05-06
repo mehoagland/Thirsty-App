@@ -20,7 +20,7 @@ class FavoritesController < ApiController
       if favorite.save
         render json: {
           message: 'ok',
-          favorites: favorites,
+          favorite: favorite,
         }
       else
         render json: {message: 'Could not create favorite'}
@@ -35,7 +35,7 @@ class FavoritesController < ApiController
 
     private
     def favorite_params
-      params.require(:favorite).permit(:drink_id, :name, :url)
+      params.require(:favorites).permit(:drink_id, :name, :url)
     end
 
 

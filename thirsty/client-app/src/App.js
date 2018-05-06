@@ -22,7 +22,8 @@ class App extends Component {
     super();
     this.state = {
       auth: Auth.isUserAuthenticated(),
-      shouldGoToDash: false
+      shouldGoToDash: false,
+      shouldGoToLogin: false
     };
 
     this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this);
@@ -41,7 +42,8 @@ class App extends Component {
       .then(res => {
         Auth.deauthenticateUser();
         this.setState({
-          auth: Auth.isUserAuthenticated()
+          auth: Auth.isUserAuthenticated(),
+          shouldGoToLogin: true
         });
       })
       .catch(err => console.log(err));
@@ -67,6 +69,7 @@ class App extends Component {
           auth: Auth.isUserAuthenticated(),
           shouldGoToDash: true
         });
+        alert("Registered successfully");
       })
       .catch(err => {
         console.log(err);
