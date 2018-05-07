@@ -1,4 +1,11 @@
 import React, { Component } from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+  Link
+} from "react-router-dom";
 
 class LoginForm extends Component {
   constructor() {
@@ -19,26 +26,37 @@ class LoginForm extends Component {
   }
   render() {
     return (
-      <div className="container">
-        <div className="form">
-          <form onSubmit={e => this.props.handleLoginSubmit(e, this.state)}>
-            Login please...
-            <input
-              type="text"
-              name="username"
-              placeholder="username"
-              value={this.state.username}
-              onChange={this.handleChange}
+      <div>
+        <div className="container3">
+          <div className="content">
+            <img
+              src={require("../svg/thirsty-logo-01.svg")}
+              className="thirsty"
             />
-            <input
-              type="password"
-              name="password"
-              placeholder="password"
-              value={this.state.password}
-              onChange={this.handleChange}
-            />
-            <input type="submit" value="Login!" className="submit" />
-          </form>
+            <div className="auth-form">
+              <form onSubmit={e => this.props.handleLoginSubmit(e, this.state)}>
+                Login please...
+                <input
+                  type="text"
+                  name="username"
+                  placeholder="username"
+                  value={this.state.username}
+                  onChange={this.handleChange}
+                  className="auth-input"
+                />
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="password"
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                  className="auth-input"
+                />
+                <input type="submit" value="Login!" className="auth-submit" />
+              </form>
+            </div>
+          </div>
+          <Link to="/drinks/dash" />
         </div>
       </div>
     );

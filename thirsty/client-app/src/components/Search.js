@@ -44,14 +44,14 @@ class Search extends Component {
           />
           <form onSubmit={e => this.props.onSearch(e, this.state.search)}>
             <input
-              className="searchBar"
               type="text"
               name="search"
               value={this.state.search}
               onChange={this.handleChange}
               placeholder="Search for a drink"
+              className="search-input"
             />
-            <input type="submit" value="Submit" />
+            <input type="submit" value="Search" className="search-submit" />
           </form>
         </div>
       </div>

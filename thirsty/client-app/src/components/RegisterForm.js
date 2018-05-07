@@ -1,4 +1,11 @@
 import React, { Component } from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+  Link
+} from "react-router-dom";
 
 class RegisterForm extends Component {
   constructor() {
@@ -20,41 +27,60 @@ class RegisterForm extends Component {
   }
   render() {
     return (
-      <div className="container">
-        <div className="form">
-          <form onSubmit={e => this.props.handleRegisterSubmit(e, this.state)}>
-            Please register your account!
-            <input
-              type="text"
-              name="username"
-              placeholder="username"
-              value={this.state.username}
-              onChange={this.handleChange}
+      <div>
+        <div className="container3">
+          <div className="content">
+            <img
+              src={require("../svg/thirsty-logo-01.svg")}
+              className="thirsty"
             />
-            <input
-              type="password"
-              name="password"
-              placeholder="password"
-              value={this.state.password}
-              onChange={this.handleChange}
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="email"
-              value={this.state.email}
-              onChange={this.handleChange}
-            />
-            <input
-              type="text"
-              name="name"
-              placeholder="name"
-              value={this.state.name}
-              onChange={this.handleChange}
-            />
-            <input type="submit" value="Register!" className="submit" />
-          </form>
+            <div className="auth-form">
+              <form
+                onSubmit={e => this.props.handleRegisterSubmit(e, this.state)}
+              >
+                Please register your account!
+                <input
+                  type="text"
+                  name="username"
+                  placeholder="username"
+                  value={this.state.username}
+                  onChange={this.handleChange}
+                  className="auth-input"
+                />
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="password"
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                  className="auth-input"
+                />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="email"
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                  className="auth-input"
+                />
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="name"
+                  value={this.state.name}
+                  onChange={this.handleChange}
+                  className="auth-input"
+                />
+                <input
+                  type="submit"
+                  value="Register!"
+                  className="auth-submit"
+                />
+              </form>
+            </div>
+          </div>
         </div>
+        <Link to="/login" />
       </div>
     );
   }

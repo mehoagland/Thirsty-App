@@ -180,6 +180,33 @@ body {
   width: 100%;
 }
 
+.container3 {
+  /* border: 1px solid red; */
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.thirsty {
+  height: 100px;
+  margin-left: 7px;
+}
+
+.message {
+  /* border: 1px solid red; */
+  width: 500px;
+  margin: 0 auto;
+  margin-top: 50px;
+  font-size: 20px;
+}
+.content {
+  /* border: 1px solid red; */
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 50px;
+}
+
 .all-drinks {
   /* border: black solid 1px; */
   width: 160px;
@@ -286,20 +313,20 @@ body {
   max-width: 400px;
 }
 
-.form {
+.auth-form {
   width: 250px;
-  margin-top: 50px;
+
   /* border: 1px solid black; */
   height: 300px;
-  text-align: center;
+  margin: 0 auto;
 }
 
-input {
+.auth-input {
   width: 80%;
   margin: 10px;
 }
 
-.submit {
+.auth-submit {
   width: 25%;
 }
 .NavBar {
@@ -369,6 +396,10 @@ input {
 .register-link:hover {
   background-color: #e5e347;
 }
+.search-input {
+  /* border: 1px solid red; */
+  width: 20vw;
+}
 
 .login-link:hover {
   background-color: #e5e347;
@@ -398,16 +429,22 @@ input {
   margin-bottom: 30px;
   margin-top: 40px;
   display: flex;
-  width: 340px;
+  width: 360px;
+}
+
+.search-submit {
+  /* border: 1px solid black; */
+  margin-left: 10px;
 }
 .searchBar {
   width: 20vw;
   order: 2;
-  /* border: 1px solid black; */
+  border: 1px solid red;
+  padding: 10px;
 }
 
 .search-img {
-  padding: 2px;
+  padding-right: 10px;
   order: -1;
   width: 20px;
   height: 20px;

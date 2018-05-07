@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class UsersController < ApiController
   before_action :require_login, except: [:create]
 
   def create
@@ -9,16 +9,16 @@ class UsersController < ApplicationController
 
     def profile
     user = User.find_by_auth_token!(request.headers[:token])
-    user_monsters = Monster.where(user_id: user.id)
+    user_favorites = user.favorites
     render json: {
       user: { username: user.username, email: user.email, name: user.name },
-      monsters: user_monsters,
-    }
+      favorites: user_favorites }
+
   end
 
   private
   def user_params
-    params.require(:user).permit(:username, :email, :password, :name)
+    params.require(:user).permit(:username, :password, :email,  :name)
   end
 
 end

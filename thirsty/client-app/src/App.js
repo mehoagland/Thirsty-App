@@ -14,6 +14,7 @@ import Auth from "./modules/Auth";
 import RegisterForm from "./components/RegisterForm";
 import LoginForm from "./components/LoginForm";
 import Favorite from "./components/Favorite";
+import Dashboard from "./components/Dashboard";
 
 import "./App.css";
 
@@ -112,9 +113,15 @@ class App extends Component {
           <Route
             exact
             path="/register"
-            render={() => (
-              <RegisterForm handleRegisterSubmit={this.handleRegisterSubmit} />
-            )}
+            render={() =>
+              this.state.auth ? (
+                <Redirect to="/login" />
+              ) : (
+                <RegisterForm
+                  handleRegisterSubmit={this.handleRegisterSubmit}
+                />
+              )
+            }
           />
 
           <Route
@@ -122,16 +129,18 @@ class App extends Component {
             path="/login"
             render={() =>
               this.state.auth ? (
-                <Redirect to="/dash" />
+                <Redirect to="/drinks/dash" />
               ) : (
                 <LoginForm handleLoginSubmit={this.handleLoginSubmit} />
               )
             }
           />
 
-          {this.state.shouldGoToDash ? <Redirect to="/dash" /> : ""}
+          {this.state.shouldGoToDash ? <Redirect to="/drinks/dash" /> : ""}
 
           <Route exact path="/drinks/favorites" exact component={Favorite} />
+
+          <Route exact path="/drinks/dash" exact component={Dashboard} />
         </div>
       </Router>
     );

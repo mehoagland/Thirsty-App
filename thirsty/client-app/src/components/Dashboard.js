@@ -7,7 +7,10 @@ class Dashboard extends Component {
   render() {
     return (
       <div className="dash">
-        <p>Hello World</p>
+        <div className="message">
+          Welcome to Thirsty ? Click on the search logo to look for a drink.
+          This should show your account information....soon.
+        </div>
       </div>
     );
   }
