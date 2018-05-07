@@ -39,10 +39,7 @@ class DrinkSingle extends Component {
       .then(res => res.json())
       .then(res => {
         console.log(res);
-        Auth.authenticateToken(res.token);
-        this.setState({
-          auth: Auth.isUserAuthenticated()
-        });
+
         alert("added successfully");
       });
   }
@@ -93,7 +90,7 @@ class DrinkSingle extends Component {
 
   render() {
     if (!this.state.singleDrinkDataLoaded) {
-      return <div classeName="">Loading</div>;
+      return <div className="">Loading</div>;
     }
     // ["Dark rum", "light rum"]
     let ingredients = this.specificKeyFilter(
