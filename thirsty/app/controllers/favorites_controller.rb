@@ -3,7 +3,7 @@ class FavoritesController < ApiController
     before_action :require_login
 
     def index
-      favorites = Favorite.all
+      favorites = Favorite.where(user_id: current_user.id )
       render json: { favorites: favorites }
     end
 

@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   get "/profile"        => "users#profile"
   resources :users
   resources :favorites
+  
 
 end
